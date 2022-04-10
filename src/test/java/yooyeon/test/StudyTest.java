@@ -12,7 +12,26 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.api.Assumptions.assumingThat;
 
 //@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+@Tag("integration")
 class StudyTest {
+
+    @Test
+    @SlowTest
+    void tagSlow() {
+
+    }
+
+    @Test
+    @FastTest
+    void tagFast() {
+
+    }
+
+    @Test
+    @Tag("feature2")
+    void tag() {
+        // Intellij Edit Configuration 에서 태그 필터링 가능
+    }
 
 
     @Test
@@ -25,7 +44,7 @@ class StudyTest {
     }
 
     @Test
-    //@EnabledIfEnvironmentVariable(named = "TEST_ENV_STRING", matches = "Test")
+        //@EnabledIfEnvironmentVariable(named = "TEST_ENV_STRING", matches = "Test")
     void condition() {
         // 조건을 만족하는 경우 테스트를 진행하고 싶음
 

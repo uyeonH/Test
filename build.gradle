@@ -26,5 +26,8 @@ dependencies {
 }
 
 tasks.named('test') {
-    useJUnitPlatform()
+    useJUnitPlatform {
+        includeTags 'integration | feature2'
+        excludeTags 'feature1'
+    }
 }
