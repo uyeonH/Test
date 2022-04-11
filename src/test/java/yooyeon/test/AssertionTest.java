@@ -2,6 +2,8 @@ package yooyeon.test;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
 import java.time.Duration;
 import java.util.function.Supplier;
@@ -11,19 +13,24 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.api.Assumptions.assumingThat;
 
-//@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+//@ExtendWith(FindSlowTestExtension.class)
 @Tag("integration")
-class StudyTest {
+class AssertionTest {
+
+    @RegisterExtension
+    static FindSlowTestExtension findSlowTestExtension = new FindSlowTestExtension(1000L);
 
     @Test
     @SlowTest
-    void tagSlow() {
-
+    void tagSlow() throws InterruptedException {
+        Thread.sleep(1005L);
     }
 
     @Test
     @FastTest
-    void tagFast() {
+    void tagFast() throws InterruptedException {
+        Thread.sleep(1005L);
+        // Please consider mark method [tagFast] with @SlowTest.  메시지 확인
 
     }
 

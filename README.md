@@ -68,6 +68,7 @@ public @interface FastTest {
 ```
 
 - 테스트 반복하기
+  
   `@RepeatedTest(3)` 테스트 3번 반복 
   
   `@ParameterizedTest` 여러 개의 파라미터에 대해 테스트 가능
@@ -92,3 +93,43 @@ public @interface FastTest {
     }
 ```
 
+- 테스트 인스턴스
+  - JUnit은 테스트 메소드마다 테스트 인스턴스를 새로 만든다.
+  - 테스트에 따라 상태를 유지해야할 경우 JUnit5에서 전략을 변경하면 가능하다.
+  - 상태 유지는 통합 테스트에서 유용할 수 있다.
+  ```java
+
+  @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+  class TestInstanceTest {
+    ...
+  }
+  ```
+  - 테스트 클래스마다 인스턴스를 생성한다.
+  - `@BeforeAll` `@AfterAll` `@BeforeEach` `@AfterEach` 에서 테스트 간에 공유하는 상태를 초기화 가능하다.
+  
+
+
+
+- 테스트 순서
+`@TestMethodOrder`
+    - MethodOrderer 구현체를 설정
+      - Alphanumeric
+      - OrderAnnoation
+      - Random
+
+    ```java
+      @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+      class TestOrder {
+        @Order(1)
+        @Test
+        void test_1() {}
+      
+        @Order(2)
+        @Test
+        void test_2() {}
+    }
+    ```
+  
+- 확장 모델
+
+JUnit5 `@ExtendWith(FindSlowTestExtension.class)`

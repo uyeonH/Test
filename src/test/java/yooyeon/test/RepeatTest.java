@@ -16,7 +16,7 @@ import org.junit.jupiter.params.provider.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class StudyTest2 {
+public class RepeatTest {
 
     @RepeatedTest(value = 10, name = "{displayName}, {currentRepetition}/{totalRepetition}")
     @DisplayName("테스트 반복하기")
