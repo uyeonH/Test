@@ -133,3 +133,91 @@ public @interface FastTest {
 - 확장 모델
 
 JUnit5 `@ExtendWith(FindSlowTestExtension.class)`
+
+
+## Mockito 
+스프링부트 2.2+부터는 Mockito 자동 추가 됨
+
+아니면 mockito-core, mockito-junit 추가
+```java
+    // https://mvnrepository.com/artifact/org.mockito/mockito-core
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '4.4.0'
+
+    // https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter
+    testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '4.4.0'
+
+```
+
+- Mock: 진짜 객체와 비슷하게 동작하지만 프로그래머가 직접 그 객체의 행동을 관리하는 객체
+- Mockito: Mock 객체를 쉽게 만들고 관리하고 검증할 수 있는 방법 제공
+
+### Mock 객체 생성
+#### 방법 1: Mockito.mock()
+```java
+@ExtendWith(MockitoExtension.class)
+class Test {
+    
+    @Mock
+    MemberService memberService;
+
+    @Mock
+    StudyRepository studyRepository;
+
+    @Test
+    void createStudyService() {
+        MemberService memberService = mock(MemberService.class);
+        StudyRepository studyRepository = mock(StudyRepository.class);
+
+        StudyService studyService = new StudyService(memberService, studyRepository);
+
+        assertNotNull(studyService);
+    }
+}
+```
+
+
+#### 방법 2: @Mock 어노테이션, 매개변수
+```java
+@ExtendWith(MockitoExtension.class)
+class Test {
+
+    @Test
+    void createStudyService2(@Mock MemberService memberService,
+                            @Mock StudyRepository studyRepository) {
+        StudyService studyService = new StudyService(memberService, studyRepository);
+        assertNotNull(studyService);
+    }
+}
+```
+
+## Mock 객체 Stubbing
+
+## Mockito BDD 스타일 API
+
+어플리케이션이 어떻게 <b>행동</b>해야 하는지에 대한 공통된 이해를 구성하는 방법으로 TDD에서 창안
+
+행동에 대한 스펙
+
+Given / When / Then
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -13,6 +13,7 @@ import org.junit.jupiter.params.converter.ArgumentConversionException;
 import org.junit.jupiter.params.converter.ConvertWith;
 import org.junit.jupiter.params.converter.SimpleArgumentConverter;
 import org.junit.jupiter.params.provider.*;
+import yooyeon.test.study.Study;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -36,7 +37,7 @@ public class RepeatTest {
     @ParameterizedTest(name = "{index} {displayName} msg={0}")
     @ValueSource(ints = {1, 2, 3})
     void parameterizedTest(@ConvertWith(StudyConverter.class) Study study) {
-        System.out.println("study = " + study.getLimit());
+        System.out.println("study = " + study.getLimitCount());
     }
 
     @CsvSource({"10, '자바 스터디'", "20, '스프링'"})

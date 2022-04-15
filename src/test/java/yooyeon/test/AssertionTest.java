@@ -2,11 +2,11 @@ package yooyeon.test;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.*;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import yooyeon.test.study.Study;
+import yooyeon.test.study.StudyStatus;
 
 import java.time.Duration;
-import java.util.function.Supplier;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -63,7 +63,7 @@ class AssertionTest {
 
         assumingThat("Test".equalsIgnoreCase(test_env), () -> {
             Study actual = new Study(10);
-            assertThat(actual.getLimit()).isGreaterThan(0);
+            assertThat(actual.getLimitCount()).isGreaterThan(0);
         });
 
     }
@@ -106,7 +106,7 @@ class AssertionTest {
                 // expected, actual, msg
                 () -> assertEquals(StudyStatus.DRAFT, study.getStatus(),
                         () -> "스터디를 처음 만들면 DRAFT 상태다"),
-                () -> assertTrue(study.getLimit() > 0, "스터디 최대 참석 인원은 0보다 커야한다")
+                () -> assertTrue(study.getLimitCount() > 0, "스터디 최대 참석 인원은 0보다 커야한다")
         );
 
     }

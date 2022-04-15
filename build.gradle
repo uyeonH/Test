@@ -27,6 +27,19 @@ dependencies {
     // Junit4 버전 테스트
     testImplementation group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.8.2'
 
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.6.6'
+
+    runtimeOnly 'com.h2database:h2'
+
+
+    // 스프링부트 2.2+ 필요없음
+//    // https://mvnrepository.com/artifact/org.mockito/mockito-core
+//    testImplementation group: 'org.mockito', name: 'mockito-core', version: '4.4.0'
+//
+//    // https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter
+//    testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '4.4.0'
+
 }
 
 tasks.named('test') {
